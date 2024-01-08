@@ -21,8 +21,8 @@ return new class extends Migration
             $table->unsignedInteger('stock_minimo')->nullable();
             $table->string('codigo_barras')->nullable();
             $table->date('fecha_vencimiento')->nullable();
-            $table->boolean('active')->default(1);
-            $table->foreign('category_id')->constrained();
+            $table->boolean('active')->default(true);
+            $table->foreignId('category_id')->constrained();
             $table->timestamps();
         });
     }

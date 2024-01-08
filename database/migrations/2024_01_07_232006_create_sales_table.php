@@ -16,8 +16,8 @@ return new class extends Migration
             $table->decimal('total', 11, 2);
             $table->decimal('pago', 11, 2)->nullable();
             $table->date('fecha');
-            $table->foreign('user_id')->constrained();
-            $table->foreign('client_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('client_id')->constrained();
             $table->timestamps();
         });
     }
