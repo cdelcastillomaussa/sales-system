@@ -1,3 +1,3 @@
 <div>
-    <h1>Inicio</h1>
+    <h1>Componente Inicio</h1>
 </div>
