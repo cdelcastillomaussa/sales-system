@@ -3,7 +3,9 @@
 namespace App\Livewire\Home;
 
 use Livewire\Component;
+use Livewire\Attributes\Title;
 
+#[Title('Inicio Test')]
 class Inicio extends Component
 {
     public function render()
