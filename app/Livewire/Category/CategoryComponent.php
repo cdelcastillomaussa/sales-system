@@ -14,6 +14,7 @@ class CategoryComponent extends Component
     //property class
     public $search = '';
     public $recordsTotal = 0;
+    public $cant=5;
 
     //property model
     public $name;
@@ -23,11 +24,11 @@ class CategoryComponent extends Component
         if($this->search != ''){
             $this->resetPage();
         }
-        
+
         $this->recordsTotal = Category::count();
         $categories = Category::where('name', 'like', '%' . $this->search . '%')
                         ->orderBy('id', 'desc')
-                        ->paginate(5);
+                        ->paginate($this->cant);
         // $categories = collect();
         return view('livewire.category.category-component', ['categories' => $categories]);
     }
