@@ -5,10 +5,12 @@ namespace App\Livewire\Category;
 use App\Models\Category;
 use Livewire\Component;
 use Livewire\Attributes\Title;
+use Livewire\WithPagination;
 
 #[Title('Categorias')]
 class CategoryComponent extends Component
 {
+    use WithPagination;
     //property class
     public $recordsTotal = 0;
 
@@ -18,7 +20,7 @@ class CategoryComponent extends Component
     public function render()
     {
         $this->recordsTotal = Category::count();
-        $categories = Category::all()->reverse();
+        $categories = Category::orderBy('id', 'desc')->paginate(5);
         // $categories = collect();
         return view('livewire.category.category-component', ['categories' => $categories]);
     }

@@ -1,5 +1,5 @@
 <div>
-    <x-card cardTitle="Listado categorias ({{ $this->recordsTotal }})" cardFooter="Card Footer">
+    <x-card cardTitle="Listado categorias ({{ $this->recordsTotal }})">
         <x-slot:cardTools>
             <a href="#" class="btn btn-primary small btn-sm" data-toggle="modal" data-target="#modalCategory">Crear
                 categoria</a>
@@ -46,6 +46,9 @@
 
         </x-table>
 
+        <x-slot:cardFooter>
+            {{ $categories->links() }}
+        </x-slot>
     </x-card>
 
     <x-modal modalId="modalCategory" modalTitle="Categorias">
