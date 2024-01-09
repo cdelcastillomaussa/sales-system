@@ -1,5 +1,5 @@
 <div>
-    <x-card cardTitle="Listado categorias" cardFooter="Card Footer">
+    <x-card cardTitle="Listado categorias ({{ $this->recordsTotal }})" cardFooter="Card Footer">
         <x-slot:cardTools>
             <a href="#" class="btn btn-primary small btn-sm" data-toggle="modal" data-target="#modalCategory">Crear
                 categoria</a>
@@ -11,7 +11,7 @@
                 <th>Nombre</th>
                 <th width="3%">...</th>
                 <th width="3%">...</th>
-                <th width="3%">....</th>
+                <th width="3%">...</th>
 
             </x-slot>
 
@@ -42,9 +42,17 @@
     </x-card>
 
     <x-modal modalId="modalCategory" modalTitle="Categorias">
-        <form>
-            <p>Form</p>
-            <button type="button" class="btn btn-primary float-right">Save changes</button>
+        <form wire:submit="store">
+            <div class="row">
+                <div class="col">
+                    <input wire:model='name' type="text" class="form-control" placeholder="Nombre categoria">
+                    @error('name')
+                        <div class="alert alert-danger w-100 mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <hr>
+            <button type="submit" class="btn btn-primary float-right">Guardar</button>
         </form>
     </x-modal>
 </div>
