@@ -11,28 +11,31 @@ class CategoryComponent extends Component
 {
     //property class
     public $recordsTotal = 0;
-    
+
     //property model
     public $name;
 
     public function render()
     {
+        $this->recordsTotal = Category::count();
         return view('livewire.category.category-component');
     }
-    public function mount(){
-        $this->recordsTotal = Category::count();
+    public function mount()
+    {
+        
     }
 
     //create category
-    public function store(){
+    public function store()
+    {
         $rules = [
             'name'  => 'required|min:5|max:255|unique:Categories'
         ];
         $messages = [
-          'name.required' => 'El nombre es requerido',
-          'name.min' => 'El nombre debe tener minimo 5 caracteres',
-          'name.max' => 'El nombre no debe superar los 255 caracteres',
-          'name.unique' => 'El nombre de la categoria ya esta en uso'  
+            'name.required' => 'El nombre es requerido',
+            'name.min' => 'El nombre debe tener minimo 5 caracteres',
+            'name.max' => 'El nombre no debe superar los 255 caracteres',
+            'name.unique' => 'El nombre de la categoria ya esta en uso'
         ];
 
         $this->validate($rules, $messages);
@@ -42,5 +45,7 @@ class CategoryComponent extends Component
         $category->save();
 
         $this->dispatch('close-modal', 'modalCategory');
+        $this->dispatch('msg', 'Categoría creada correctamente.');
+        $this->reset(['name']);
     }
 }
