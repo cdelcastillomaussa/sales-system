@@ -6,6 +6,7 @@ use App\Models\Category;
 use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\WithPagination;
+use Spatie\LaravelIgnition\Recorders\DumpRecorder\Dump;
 
 #[Title('Categorias')]
 class CategoryComponent extends Component
@@ -18,6 +19,7 @@ class CategoryComponent extends Component
 
     //property model
     public $name;
+    public $Id;
 
     public function render()
     {
@@ -59,5 +61,34 @@ class CategoryComponent extends Component
         $this->dispatch('close-modal', 'modalCategory');
         $this->dispatch('msg', 'Categoría creada correctamente.');
         $this->reset(['name']);
+    }
+
+    public function edit(Category $category){
+        $this->Id = $category->id;
+        $this->name = $category->name;
+        $this->dispatch('open-modal', 'modalCategory');
+        // $this->dispatch('msg', 'Categoría creada correctamente.');
+
+    }
+
+    public function update(Category $category){
+
+        $rules = [
+            'name'  => 'required|min:5|max:255|unique:Categories,id,'.$this->Id
+        ];
+        $messages = [
+            'name.required' => 'El nombre es requerido',
+            'name.min' => 'El nombre debe tener minimo 5 caracteres',
+            'name.max' => 'El nombre no debe superar los 255 caracteres',
+            'name.unique' => 'El nombre de la categoria ya esta en uso'
+        ];
+
+        $this->validate($rules, $messages);
+        $category->name = $this->name;
+        $category->update();
+        $this->dispatch('close-modal', 'modalCategory');
+        $this->dispatch('msg', 'Categoría actualizada correctamente.');
+        $this->reset(['name']);
+
     }
 }
