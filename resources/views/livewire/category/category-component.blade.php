@@ -19,7 +19,7 @@
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->name }}</td>
                     <td>
-                        <a href="#" class="btn btn-success btn-xs" title="Ver">
+                        <a href="{{ route('categories.show', $category) }}" class="btn btn-success btn-xs" title="Ver">
                             <i class="fas fa-eye"></i>
                         </a>
                     </td>
