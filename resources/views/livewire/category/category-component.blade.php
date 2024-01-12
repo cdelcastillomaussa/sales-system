@@ -1,8 +1,7 @@
 <div>
     <x-card cardTitle="Listado categorias ({{ $this->recordsTotal }})">
         <x-slot:cardTools>
-            <a href="#" class="btn btn-primary small btn-sm" data-toggle="modal" data-target="#modalCategory">Crear
-                categoria</a>
+            <a href="#" class="btn btn-primary small btn-sm" wire:click='create'><i class="fas fa-plus-circle mr-1"></i>Crear categoria</a>
         </x-slot>
 
         <x-table>

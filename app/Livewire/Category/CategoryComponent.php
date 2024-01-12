@@ -39,6 +39,15 @@ class CategoryComponent extends Component
         
     }
 
+    public function create()
+    {
+        $this->reset(['name']);
+        $this->resetErrorBag();
+        $this->dispatch('open-modal', 'modalCategory');
+
+        
+    }
+
     //create category
     public function store()
     {
