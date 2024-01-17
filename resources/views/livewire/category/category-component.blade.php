@@ -29,7 +29,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="#" class="btn btn-danger btn-xs" title="Eliminar">
+                        <a wire:click="$dispatch('delete', {id: {{ $category->id }}, eventName: 'destroyCategory'})" class="btn btn-danger btn-xs" title="Eliminar">
                             <i class="fas fa-trash"></i>
                         </a>
                     </td>

@@ -2,10 +2,11 @@
 
 namespace App\Livewire\Category;
 
-use App\Models\Category;
 use Livewire\Component;
-use Livewire\Attributes\Title;
+use App\Models\Category;
+use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Livewire\Attributes\Title;
 use Spatie\LaravelIgnition\Recorders\DumpRecorder\Dump;
 
 #[Title('Categorias')]
@@ -99,5 +100,12 @@ class CategoryComponent extends Component
         $this->dispatch('msg', 'Categoría actualizada correctamente.');
         $this->reset(['name']);
 
+    }
+
+    #[On('destroyCategory')]
+    public function destroy($id){
+        $category = Category::findOrfail($id);
+        $category->delete();
+        $this->dispatch('msg', 'Categoria eliminada correctamente.');
     }
 }

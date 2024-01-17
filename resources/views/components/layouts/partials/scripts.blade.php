@@ -8,3 +8,6 @@
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
 
 <!-- PLUGINS -->
+
+<!-- SwweetAlert2 -->
+<script src="{{ asset('plugins/sweetalert2/sweetalert2.js') }}"></script>
