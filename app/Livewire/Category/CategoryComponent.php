@@ -29,7 +29,7 @@ class CategoryComponent extends Component
         }
 
         $this->recordsTotal = Category::count();
-        $categories = Category::where('name', 'like', '%' . $this->search . '%')
+        $categories = Category::where('name', 'like', "%{$this->search}%")
                         ->orderBy('id', 'desc')
                         ->paginate($this->cant);
         // $categories = collect();
